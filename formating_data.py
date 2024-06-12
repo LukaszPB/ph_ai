@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import numpy as np
-import mlflowe
 
 # Wczytanie danych z pliku CSV
 df = pd.read_csv('failures_data.csv')
@@ -46,11 +45,14 @@ def augment_data(data, num_records):
 # Generowanie 100 dodatkowych rekordów
 augmented_df = augment_data(df, 100)
 
+#Połączenie danych
+merged_df = pd.concat([df, augmented_df], ignore_index=True)
+
 # Normalizacja danych
 scaler = MinMaxScaler()
-df[['POTENTIAL_PRICE', 'DAYS_TO_POTENTIAL']] = scaler.fit_transform(df[['POTENTIAL_PRICE', 'DAYS_TO_POTENTIAL']])
-augmented_df[['POTENTIAL_PRICE', 'DAYS_TO_POTENTIAL']] = scaler.fit_transform(augmented_df[['POTENTIAL_PRICE', 'DAYS_TO_POTENTIAL']])
+
+merged_df['POTENTIAL_PRICE'] = scaler.fit_transform(merged_df[['POTENTIAL_PRICE']])
+merged_df['DAYS_TO_POTENTIAL'] = scaler.fit_transform(merged_df[['DAYS_TO_POTENTIAL']])
 
 # Zapisanie sformatowanych danych do nowych plików CSV
-df.to_csv('failures_data_formatted.csv', index=False)
-augmented_df.to_csv('failures_data_augmented.csv', index=False)
+merged_df.to_csv('failures_data_formatted_merged.csv', index=False)
