@@ -49,10 +49,10 @@ augmented_df = augment_data(df, 100)
 merged_df = pd.concat([df, augmented_df], ignore_index=True)
 
 # Normalizacja danych
-scaler = MinMaxScaler()
+# scaler = MinMaxScaler()
 
-merged_df['POTENTIAL_PRICE'] = scaler.fit_transform(merged_df[['POTENTIAL_PRICE']])
-merged_df['DAYS_TO_POTENTIAL'] = scaler.fit_transform(merged_df[['DAYS_TO_POTENTIAL']])
+# merged_df['POTENTIAL_PRICE'] = scaler.fit_transform(merged_df[['POTENTIAL_PRICE']])
+# merged_df['DAYS_TO_POTENTIAL'] = scaler.fit_transform(merged_df[['DAYS_TO_POTENTIAL']])
 
 # Zapisanie sformatowanych danych do nowych plików CSV
-merged_df.to_csv('failures_data_formatted_merged.csv', index=False)
+merged_df.to_csv('failures_data_formatted.csv', index=False)
