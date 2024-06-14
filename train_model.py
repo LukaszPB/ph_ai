@@ -107,7 +107,7 @@ def train_and_evaluate_model(model, criterion, optimizer, train_loader, val_load
         print(f"Model zarejestrowany pod nazwą '{model_name}' z wersją '{model_version.version}'")
 
 # Wczytanie sformatowanych danych z pliku CSV
-df = pd.read_csv('failures_data_formatted.csv')
+df = pd.read_csv('failures_data_prepared.csv')
 
 # Podział danych na cechy (X) i zmienną docelową (y)
 X = df.drop('POTENTIAL_PRICE', axis=1)

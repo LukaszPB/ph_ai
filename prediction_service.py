@@ -7,7 +7,9 @@ app = Flask(__name__)
 swagger = Swagger(app)
 
 model_name = "NeuralNetworkRegressionModel"
+#4Layer100epochsLowLr 
 model_uri = "mlflow-artifacts:/499684513618114738/b27c7189585a4e82a176f12557870e2f/artifacts/model"
+#3Layer50epochsHighLr 
 #model_uri = "mlflow-artifacts:/499684513618114738/c97e0910d14a4e0080cabcafc580f3ca/artifacts/model"
 model = mlflow.pytorch.load_model(model_uri)
 
